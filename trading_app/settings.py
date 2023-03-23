@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -14,7 +15,7 @@ SECRET_KEY = 'django-insecure-fte6g0vvhcl)o7e049@9!%+b7t%u196%k+*5@wb6x7!$1l(7u1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -26,6 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'django_celery_beat',
+    
     'trading',
 ]
 
@@ -115,3 +119,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Celery settings
+CELERY_BROKER_URL = str(os.getenv('CELERY_BROKER_URL')),
+CELERY_RESULT_BACKEND = str(os.getenv('CELERY_RESULT_BACKEND')),
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+
+CELERY_BEAT_SCHEDULE = {
+    'fetch_data_every_minute': {
+        'task': 'trading.tasks.fetch_data',
+        'schedule': 60.0,
+    },
+}
