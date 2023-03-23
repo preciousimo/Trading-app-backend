@@ -1,6 +1,7 @@
 from django.db import models
 
 class TradingAccount(models.Model):
+    name = models.CharField(blank=True, max_length=50)
     server = models.CharField(max_length=50)
     login = models.CharField(max_length=50)
     investor_password = models.CharField(max_length=50)
