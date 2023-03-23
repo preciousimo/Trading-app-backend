@@ -1,16 +1,17 @@
 import datetime
 import time
 import psycopg2
+from decouple import config
 import MetaTrader5 as mt5
 from .models import TradingAccount, TradingData
 
 # Connect to PostgreSQL database
 conn = psycopg2.connect(
-    database="database_name",
-    user="postgres",
-    password="your_password",
-    host="localhost",
-    port="5432"
+    database=config('DB_NAME'),
+    user=config('DB_USER'),
+    password=config('DB_PASSWORD'),
+    host=config('DB_HOST'),
+    port=config('DB_PORT')
 )
 
 # Set the database cursor
