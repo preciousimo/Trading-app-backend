@@ -1,20 +1,28 @@
 from django.db import models
 
 class TradingAccount(models.Model):
-    server = models.CharField(max_length=100)
-    login = models.CharField(max_length=100)
-    investor_password = models.CharField(max_length=100)
-    platform = models.CharField(max_length=100)
+    server = models.CharField(max_length=50)
+    login = models.CharField(max_length=50)
+    investor_password = models.CharField(max_length=50)
+    platform = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.platform} Account {self.login}"
-    
-class TradingData(models.Model):
+        return self.name
+
+class Equity(models.Model):
     account = models.ForeignKey(TradingAccount, on_delete=models.CASCADE)
-    equity = models.DecimalField(max_digits=15, decimal_places=2)
-    balance = models.DecimalField(max_digits=15, decimal_places=2)
-    market_watch_time = models.CharField(max_length=50)
+    value = models.DecimalField(max_digits=10, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return f"{self.account} - {self.timestamp}"
+
+class Balance(models.Model):
+    account = models.ForeignKey(TradingAccount, on_delete=models.CASCADE)
+    value = models.DecimalField(max_digits=10, decimal_places=2)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+class MarketWatchTime(models.Model):
+    account = models.ForeignKey(TradingAccount, on_delete=models.CASCADE)
+    symbol = models.CharField(max_length=100)
+    bid = models.DecimalField(max_digits=10, decimal_places=5)
+    ask = models.DecimalField(max_digits=10, decimal_places=5)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
