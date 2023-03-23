@@ -24,6 +24,7 @@ def fetch_data():
         # Fetch the account information
         account_info = mt5.account_info()
         account = TradingAccount.objects.create(
+            name=account_info.name,
             login=account_info.login,
             server=account_info.server,
             currency=account_info.currency,
