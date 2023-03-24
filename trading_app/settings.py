@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_celery_beat',
+    'django_celery_results',
     'rest_framework',
     'corsheaders',
     
@@ -140,8 +141,8 @@ REST_FRAMEWORK = {
 }
 
 # Celery settings
-CELERY_BROKER_URL = str(os.getenv('CELERY_BROKER_URL')),
-CELERY_RESULT_BACKEND = str(os.getenv('CELERY_RESULT_BACKEND')),
+CELERY_BROKER_URL = 'redis://default:NnuqEoSiPGUvtMSo5cRz@containers-us-west-158.railway.app:5957'
+CELERY_RESULT_BACKEND = 'redis://default:NnuqEoSiPGUvtMSo5cRz@containers-us-west-158.railway.app:5957'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
