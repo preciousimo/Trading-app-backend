@@ -28,7 +28,7 @@ DB_NAME=<database-name>
 DB_USER=<database-user>
 DB_PASSWORD=<database-password>
 ```
-Replace <database-host>, <database-name>, <database-user>, <database-password>, and <jwt-secret> with your own values.
+Replace database-host, database-name, database-user, and database-password with your own values.
 
 4. Run the database migrations:
 ```
