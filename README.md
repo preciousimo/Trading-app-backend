@@ -65,7 +65,10 @@ Retrieve a list of market watch times.
 GET /api/marketwatchtimes/int:pk/
 Retrieve a single market watch time by ID.
 
-All endpoints require authentication, except for /api/equities/. The authenticated user can only access their own data (e.g. their own accounts, balances, etc.). The JWT must be included in the Authorization header of the request, using the Bearer scheme.
+All endpoints require authentication, except for /api/equities/. The authenticated user can only access their own data (e.g. their own accounts, balances, etc.). 
+
+
+NB: The JWT must be included in the Authorization header of the request, using the Bearer scheme.(This has not been set yet)
 
 In addition to the above endpoints, there are also endpoints for creating, updating, and deleting objects:
 
